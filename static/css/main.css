@@ -1,0 +1,72 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.app-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.app-header {
+    background: #2e7d32;
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+}
+.app-header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+.app-header p {
+    margin: 5px 0 0;
+    opacity: 0.9;
+}
+
+.tab-container {
+    display: flex;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-link {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 3px solid transparent;
+}
+.tab-link i {
+    margin-right: 8px;
+}
+
+.tab-link:hover {
+    background-color: #e9e9e9;
+}
+
+.tab-link.active {
+    color: #2e7d32;
+    border-bottom: 3px solid #2e7d32;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    animation: fadeEffect 0.5s;
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

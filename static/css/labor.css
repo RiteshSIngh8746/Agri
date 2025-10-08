@@ -1,0 +1,207 @@
+/* Scoping wrapper to prevent CSS conflicts with other tabs */
+#labor-prediction-wrapper {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+#labor-prediction-wrapper .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+#labor-prediction-wrapper .header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#labor-prediction-wrapper .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #2d6a4f;
+}
+
+#labor-prediction-wrapper .header-icon {
+    width: 32px;
+    height: 32px;
+}
+
+#labor-prediction-wrapper .header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+#labor-prediction-wrapper .header-subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+#labor-prediction-wrapper .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+}
+
+#labor-prediction-wrapper .card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+#labor-prediction-wrapper .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#labor-prediction-wrapper .card-icon {
+    width: 24px;
+    height: 24px;
+    color: #2d6a4f;
+}
+
+#labor-prediction-wrapper .form-group {
+    margin-bottom: 1rem;
+}
+
+#labor-prediction-wrapper .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+#labor-prediction-wrapper .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#labor-prediction-wrapper .form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+
+#labor-prediction-wrapper .button-group {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+#labor-prediction-wrapper .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#labor-prediction-wrapper .btn-primary {
+    background-color: #2d6a4f;
+    color: white;
+}
+
+#labor-prediction-wrapper .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+#labor-prediction-wrapper .btn-icon {
+    width: 18px;
+    height: 18px;
+}
+
+#labor-prediction-wrapper .hidden {
+    display: none;
+}
+
+#labor-prediction-wrapper .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#labor-prediction-wrapper .summary-card {
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+}
+
+#labor-prediction-wrapper .summary-card-blue { background-color: #4a90e2; }
+#labor-prediction-wrapper .summary-card-green { background-color: #50c878; }
+
+#labor-prediction-wrapper .summary-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+#labor-prediction-wrapper .summary-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+#labor-prediction-wrapper .details-card, #labor-prediction-wrapper .breakdown-section {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+#labor-prediction-wrapper .details-title, #labor-prediction-wrapper .breakdown-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#labor-prediction-wrapper .details-content p {
+    margin: 0.5rem 0;
+}
+
+#labor-prediction-wrapper .breakdown-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+#labor-prediction-wrapper .breakdown-list-item:last-child {
+    border-bottom: none;
+}
+
+#labor-prediction-wrapper .activity-name {
+    font-weight: 500;
+}
+
+#labor-prediction-wrapper .activity-cost {
+    font-weight: 600;
+    color: #2d6a4f;
+}
+
+#labor-prediction-wrapper .empty-state {
+    text-align: center;
+    padding: 2rem;
+}
+
+#labor-prediction-wrapper .empty-icon {
+    width: 48px;
+    height: 48px;
+    color: #adb5bd;
+    margin-bottom: 1rem;
+}

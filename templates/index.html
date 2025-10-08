@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Agricultural System</title>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Agricultural System</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/calendar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prediction.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/labor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/yield.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forecast.css') }}">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+</head>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-leaf"></i> Integrated Agricultural System</h1>
+            <p>Your one-stop solution for crop management and prediction</p>
+        </header>
+
+        <div class="tab-container">
+            <button class="tab-link active" onclick="openTab(event, 'calendar')">
+                <i class="fas fa-calendar-alt"></i> Dynamic Crop Calendar
+            </button>
+            <button class="tab-link" onclick="openTab(event, 'prediction')">
+                <i class="fas fa-brain"></i> Crop & Fertilizer Prediction
+            </button>
+            <button class="tab-link" onclick="openTab(event, 'labor')">
+                <i class="fas fa-users"></i> Labor Cost Prediction
+            </button>
+            <button class="tab-link" onclick="openTab(event, 'yield')">
+                <i class="fas fa-chart-line"></i> Yield Prediction
+            </button>
+        </div>
+
+        <div id="calendar" class="tab-content" style="display:block;">
+            <div class="container">
+                <div class="header">
+                    <h1><i class="fas fa-calendar"></i> Dynamic Crop Management Calendar</h1>
+                    <p>Personalized timeline based on your sowing date and local weather</p>
+                </div>
+                <div class="controls-section">
+                    <div class="controls-grid">
+                        <div class="control-group"><label>Select Crop</label><select id="selectedCrop"><option value="Rice">Rice</option><option value="Wheat">Wheat</option><option value="Cotton">Cotton</option><option value="Maize">Maize</option><option value="Sugarcane">Sugarcane</option></select></div>
+                        <div class="control-group"><label>Variety/Duration</label><select id="variety"><option value="medium">Medium (120 days)</option></select></div>
+                        <div class="control-group"><label>Location</label><select id="location"><option value="Kolhapur">Kolhapur</option><option value="Satara">Satara</option><option value="Sangli">Sangli</option><option value="Pune">Pune</option><option value="Solapur">Solapur</option></select></div>
+                        <div class="control-group"><label>Sowing Date</label><input type="date" id="sowingDate"></div>
+                        <div class="control-group"><button id="generateBtn" disabled>Generate Calendar</button></div>
+                    </div>
+                </div>
+                <div class="section" id="sowingRecommendations">
+                    <h2><i class="fas fa-clock"></i> Optimal Sowing Times</h2>
+                    <div id="recommendationsGrid" class="recommendations-grid"></div>
+                </div>
+                <div class="section hidden" id="summarySection"><div class="summary-grid"><div class="summary-card bg-blue"><h3>Total Duration</h3><p id="totalDuration">0 days</p></div><div class="summary-card bg-green"><h3>Expected Harvest</h3><p id="expectedHarvest">-</p></div><div class="summary-card bg-purple"><h3>Variety</h3><p id="varietyInfo">-</p></div><div class="summary-card bg-yellow"><h3>Location</h3><p id="locationInfo">-</p></div></div></div>
+                <div class="section hidden" id="timelineSection"><h2>Crop Management Timeline</h2><div id="timelineContainer"></div></div>
+                <div class="section hidden" id="criticalFactorsSection">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Critical Growth Factors</h2>
+                    <div class="factors-grid">
+                        <div class="factor-card bg-red"><h3><i class="fas fa-thermometer-half"></i> Temperature</h3><div id="temperatureFactors"></div></div>
+                        <div class="factor-card bg-blue"><h3><i class="fas fa-tint"></i> Water</h3><div id="waterFactors"></div></div>
+                        <div class="factor-card bg-green"><h3><i class="fas fa-cloud"></i> Humidity</h3><div id="humidityFactors"></div></div>
+                    </div>
+                </div>
+                 <div class="section hidden" id="managementTipsSection">
+                    <h2><i class="fas fa-leaf"></i> Smart Management Tips</h2>
+                    <div class="tips-grid"><div class="tip-card bg-yellow"><h3>Weather-Based Adjustments</h3><ul><li>Monitor 7-day weather forecasts</li><li>Delay irrigation if rain is predicted</li><li>Advance harvest if needed</li></ul></div><div class="tip-card bg-purple"><h3>Technology Integration</h3><ul><li>Use soil moisture sensors</li><li>Install local weather stations</li><li>Use mobile apps for alerts</li></ul></div><div class="tip-card bg-indigo"><h3>Seasonal Precautions</h3><ul><li>Prepare drainage before monsoon</li><li>Stock pesticides in advance</li><li>Arrange labor for critical times</li></ul></div></div>
+                </div>
+                <div class="section" id="placeholder"><div class="placeholder-content"><i class="fas fa-calendar" style="font-size: 64px; color: #9ca3af; margin-bottom: 16px;"></i><h3>Select Your Sowing Date</h3><p>Choose your crop, variety, location, and sowing date to generate a personalized calendar.</p></div></div>
+            </div>
+        </div>
+
+        <div id="prediction" class="tab-content">
+            <div class="pred-container">
+                <h1>Crop & Fertilizer Recommendation</h1>
+                <form id="predictionForm">
+                    <label>District Name:</label>
+                    <select name="District_Name" id="citySelect" required>
+                        {% for city in cities %}
+                            <option value="{{ city }}">{{ city }}</option>
+                        {% endfor %}
+                    </select><br>
+                    <label>Rainfall (mm):</label>
+                    <input type="number" name="Rainfall" id="rainfall" step="0.01" min="300" max="3000" required><br>
+                    <label>Temperature (°C):</label>
+                    <input type="number" name="Temperature" id="temperature" step="0.01" min="10" max="50" required><br>
+                    <label>Humidity (%):</label>
+                    <input type="number" name="Humidity" id="humidity" step="0.01" required><br>
+                    <label>Soil Color:</label>
+                    <input type="text" name="Soil_color" required><br>
+                    <label>Nitrogen (kg/ha):</label>
+                    <input type="number" name="Nitrogen" step="0.01" min="20" max="150" required><br>
+                    <label>Phosphorus (kg/ha):</label>
+                    <input type="number" name="Phosphorus" step="0.01" min="10" max="100" required><br>
+                    <label>Potassium (kg/ha):</label>
+                    <input type="number" name="Potassium" step="0.01" min="5" max="150" required><br>
+                    <label>pH:</label>
+                    <input type="number" name="pH" step="0.01" min="6" max="9" required><br>
+                    <button type="submit">Predict</button>
+                </form>
+                <div id="predictionResult" class="result" style="display:none;">
+                    <h2>Prediction Result</h2>
+                    <p><strong>Recommended Crop:</strong> <span id="cropResult"></span></p>
+                    <p><strong>Recommended Fertilizer:</strong> <span id="fertResult"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="labor" class="tab-content">
+            <div id="labor-prediction-wrapper">
+                <div class="container">
+                    <header class="header">
+                        <div class="header-title">
+                            <i data-lucide="wheat" class="header-icon"></i>
+                            <h1>Agricultural Labor Prediction System</h1>
+                        </div>
+                        <p class="header-subtitle">Calculate labor requirements and costs for your crops</p>
+                    </header>
+            
+                    <div class="main-grid">
+                        <div class="card">
+                            <h2 class="card-title">
+                                <i data-lucide="calculator" class="card-icon"></i>
+                                Labor Calculation
+                            </h2>
+            
+                            <form id="laborForm" class="form">
+                                <div class="form-group">
+                                    <label for="laborCropSelect" class="form-label">Select Crop</label>
+                                    <select id="laborCropSelect" class="form-input" required>
+                                        <option value="">Choose a crop...</option>
+                                    </select>
+                                </div>
+            
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="area" class="form-label">Cultivation Area</label>
+                                        <input type="number" id="area" class="form-input" placeholder="Enter area" required min="0" step="0.01">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areaUnit" class="form-label">Area Unit</label>
+                                        <select id="areaUnit" class="form-input">
+                                            <option value="acres">Acres</option>
+                                            <option value="hectares">Hectares</option>
+                                        </select>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="wageRate" class="form-label">Daily Wage Rate (₹)</label>
+                                    <input type="number" id="wageRate" class="form-input" placeholder="Enter daily wage" required min="0" step="1">
+                                </div>
+            
+                                <div class="button-group">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i data-lucide="calculator" class="btn-icon"></i>
+                                        Calculate Labor Cost
+                                    </button>
+                                    <button type="button" id="resetBtn" class="btn btn-secondary">
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+            
+                        <div class="card">
+                            <h2 class="card-title">
+                                <i data-lucide="users" class="card-icon"></i>
+                                Labor Requirements
+                            </h2>
+            
+                            <div id="results" class="results hidden">
+                                <div class="summary-grid">
+                                    <div class="summary-card summary-card-blue">
+                                        <div class="summary-header">
+                                            <i data-lucide="users" class="summary-icon"></i>
+                                            <span class="summary-label">Total Labor Days</span>
+                                        </div>
+                                        <p id="totalLaborDays" class="summary-value">0</p>
+                                    </div>
+                                    <div class="summary-card summary-card-green">
+                                        <div class="summary-header">
+                                            <i data-lucide="indian-rupee" class="summary-icon"></i>
+                                            <span class="summary-label">Total Cost</span>
+                                        </div>
+                                        <p id="totalCost" class="summary-value">₹0</p>
+                                    </div>
+                                </div>
+                                <div class="details-card">
+                                    <h3 class="details-title">Calculation Details</h3>
+                                    <div id="calculationDetails" class="details-content"></div>
+                                </div>
+                                <div class="breakdown-section">
+                                    <h3 class="breakdown-title">Activity-wise Breakdown</h3>
+                                    <div id="activityBreakdown" class="breakdown-list"></div>
+                                </div>
+                            </div>
+            
+                            <div id="emptyState" class="empty-state">
+                                <i data-lucide="users" class="empty-icon"></i>
+                                <p class="empty-text">Enter crop details to see labor requirements and cost breakdown</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="yield" class="tab-content">
+            <div id="yield-prediction-wrapper">
+                <div class="container">
+                    <div class="title">Crop Yield Prediction</div>
+                    <form id="yield-form">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select id="state" name="State_Name" required>
+                                <option value="">Select State</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="district">District</label>
+                            <select id="district" name="District_Name" required>
+                                <option value="">Select District</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="season">Season</label>
+                            <select id="season" name="Season" required>
+                                <option value="">Select Season</option>
+                                <option value="Kharif">Kharif</option>
+                                <option value="Rabi">Rabi</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Whole Year">Whole Year</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="crop">Crop</label>
+                            <select id="crop" name="Crop" required>
+                                <option value="">Select Crop</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="area-yield">Area (in Hectares)</label> <input type="number" id="area-yield" name="Area" placeholder="Enter area in hectares" required step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="predict-button">Predict Yield</button>
+                        </div>
+                    </form>
+                    <div id="result-container" style="display: none;">
+                        <h2>Prediction Result</h2>
+                        <p id="result"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="chatbot-fab" class="chatbot-fab" title="Open AgriBot">
+        <i class="fas fa-comments"></i>
+    </button>
+    <div id="chatbot-overlay" class="hidden">
+        <div id="chatbot-container">
+            <div class="chat-header">
+                <h2>AgriBot Assistant</h2>
+                <button id="close-chatbot-btn" class="close-chatbot-btn">&times;</button>
+            </div>
+            <div id="chat-window" class="chat-window">
+                <div class="message bot-message"><p>Welcome! How can I assist you today?</p></div>
+            </div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/labor.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/yield.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <script>
+        // Initialize Lucide Icons used in the Labor Prediction tab
+        lucide.createIcons();
+    </script>
+        
+        <div id="calendar" class="tab-content" style="display:block;"> </div>
+        <div id="prediction" class="tab-content"> </div>
+        <div id="labor" class="tab-content"> </div>
+        <div id="yield" class="tab-content"> </div>
+
+        <div id="forecast" class="tab-content">
+            <div id="forecast-wrapper">
+                <div class="container">
+                    <header class="header">
+                        <h1><i class="fas fa-calendar-alt"></i> 4-Month Seasonal Forecast</h1>
+                        <p>Select a location to get the upcoming seasonal outlook</p>
+                    </header>
+                    <main>
+                        <div class="input-container">
+                            <select id="location-select">
+                                <option value="">Select a Location...</option>
+                                {% for loc in locations %}
+                                    <option value="{{ loc }}">{{ loc }}</option>
+                                {% endfor %}
+                            </select>
+                            <button id="get-forecast-btn" class="btn">Get Forecast</button>
+                        </div>
+                        <div id="forecast-result">
+                            <p class="placeholder">The 4-month seasonal outlook will be displayed here.</p>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <button id="chatbot-fab" class="chatbot-fab" title="Open AgriBot"><i class="fas fa-comments"></i></button>
+    <div id="chatbot-overlay" class="hidden">
+        <div id="chatbot-container">
+            <div class="chat-header">
+                <h2>AgriBot Assistant</h2>
+                <button id="close-chatbot-btn" class="close-chatbot-btn">&times;</button>
+            </div>
+            <div id="chat-window" class="chat-window">
+                <div class="message bot-message"><p>Welcome! How can I assist you today?</p></div>
+            </div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/labor.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/yield.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/forecast.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <script> lucide.createIcons(); 
+    </script>
+</body>
+</html>

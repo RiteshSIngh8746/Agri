@@ -1,0 +1,75 @@
+#yield-prediction-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    background-color: #f4f7f6;
+}
+
+#yield-prediction-wrapper .container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+#yield-prediction-wrapper .title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c5e4c;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#yield-prediction-wrapper .form-group {
+    margin-bottom: 1rem;
+}
+
+#yield-prediction-wrapper label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+#yield-prediction-wrapper input[type="number"],
+#yield-prediction-wrapper select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+#yield-prediction-wrapper button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#yield-prediction-wrapper button:hover {
+    background-color: #218838;
+}
+
+#yield-prediction-wrapper #result-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #e2f0d9;
+    border-left: 5px solid #548235;
+    border-radius: 4px;
+}
+
+#yield-prediction-wrapper #result-container h2 {
+    margin-top: 0;
+    color: #385723;
+}

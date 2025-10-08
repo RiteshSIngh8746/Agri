@@ -1,0 +1,44 @@
+<!-- Content for the Dynamic Crop Calendar -->
+<div id="calendar-app" class="p-3">
+    <div class="row">
+        <!-- Input Form Column -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-edit me-2"></i>Crop Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="selectedCrop" class="form-label">Select Crop:</label>
+                        <select id="selectedCrop" class="form-select">
+                            <option value="Rice">Rice</option>
+                            <option value="Sugarcane">Sugarcane</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="variety" class="form-label">Select Variety:</label>
+                        <select id="variety" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sowingDate" class="form-label">Sowing Date:</label>
+                        <input type="date" id="sowingDate" class="form-control">
+                    </div>
+                    <div class="d-grid">
+                        <button id="generateBtn" class="btn btn-success" disabled>Generate Calendar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Timeline Display Column -->
+        <div class="col-lg-8">
+            <div id="timeline-container">
+                <!-- Timeline will be dynamically inserted here -->
+                 <div class="text-center p-5 bg-white rounded shadow-sm">
+                    <i class="fas fa-info-circle fa-3x text-muted mb-3"></i>
+                    <h4>Your calendar will appear here.</h4>
+                    <p>Please select a crop and sowing date to begin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

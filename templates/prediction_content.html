@@ -1,0 +1,103 @@
+<!-- Content for the Crop & Fertilizer Prediction -->
+<div id="prediction-app" class="p-3">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Enter Soil and Climate Data</h5>
+        </div>
+        <div class="card-body">
+            <form id="predictionForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="District_Name" class="form-label">District Name:</label>
+                        <select name="District_Name" id="District_Name" class="form-select" required>
+                            <option value="" selected disabled>Select a District</option>
+                            {% for city in cities %}
+                                <option value="{{ city }}">{{ city }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="Soil_color" class="form-label">Soil Color:</label>
+                        <select name="Soil_color" id="Soil_color" class="form-select" required>
+                            <option value="" selected disabled>Select Soil Color</option>
+                             {% for color in soil_colors %}
+                                <option value="{{ color }}">{{ color }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="Temperature" class="form-label">Temperature (°C):</label>
+                        <input type="number" id="Temperature" name="Temperature" class="form-control" step="0.1" placeholder="e.g., 25.5" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="Humidity" class="form-label">Humidity (%):</label>
+                        <input type="number" id="Humidity" name="Humidity" class="form-control" step="0.1" placeholder="e.g., 80.2" required>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="Rainfall" class="form-label">Annual Rainfall (mm):</label>
+                        <input type="number" id="Rainfall" name="Rainfall" class="form-control" step="0.1" placeholder="e.g., 1000" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="pH" class="form-label">Soil pH:</label>
+                        <input type="number" id="pH" name="pH" class="form-control" step="0.1" placeholder="e.g., 6.5" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="Nitrogen" class="form-label">Nitrogen (kg/ha):</label>
+                        <input type="number" id="Nitrogen" name="Nitrogen" class="form-control" step="0.1" placeholder="e.g., 90" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="Phosphorus" class="form-label">Phosphorus (kg/ha):</label>
+                        <input type="number" id="Phosphorus" name="Phosphorus" class="form-control" step="0.1" placeholder="e.g., 45" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="Potassium" class="form-label">Potassium (kg/ha):</label>
+                        <input type="number" id="Potassium" name="Potassium" class="form-control" step="0.1" placeholder="e.g., 45" required>
+                    </div>
+                </div>
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary">Get Prediction</button>
+                </div>
+            </form>
+            <div id="predictionResult" class="mt-4" style="display: none;">
+                <div class="alert alert-success">
+                    <h4>Prediction Results:</h4>
+                    <p><strong>Recommended Crop:</strong> <span id="cropResult"></span></p>
+                    <p><strong>Recommended Fertilizer:</strong> <span id="fertResult"></span></p>
+                </div>
+            </div>
+             <div id="predictionError" class="mt-4" style="display: none;">
+                <div class="alert alert-danger">
+                    <h4>An Error Occurred:</h4>
+                    <p id="errorText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  async function fetchSensorData() {
+    try {
+      const res = await fetch('/get_data');
+      const data = await res.json();
+
+      // Update input fields
+      document.getElementById("Nitrogen").value = data.Nitrogen || 0;
+      document.getElementById("Phosphorus").value = data.Phosphorus || 0;
+      document.getElementById("Potassium").value = data.Potassium || 0;
+      document.getElementById("pH").value = data.pH ? data.pH.toFixed(2) : 0;
+
+    } catch (err) {
+      console.error("Error fetching sensor data:", err);
+    }
+  }
+
+  // Fetch every 5 seconds
+  setInterval(fetchSensorData, 5000);
+  fetchSensorData();
+</script>
